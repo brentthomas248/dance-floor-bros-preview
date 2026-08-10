@@ -534,10 +534,25 @@
       min-height: 52px;
       margin-top: 9px;
       padding: 11px 12px;
-      border: 1px solid var(--slate);
+      border: 1px solid var(--rule);
       border-radius: 0;
-      background: transparent;
+      background: var(--paper);
       font-size: 18px;
+    }
+    @media (hover: hover) {
+      .field input:hover, .field select:hover, .field textarea:hover {
+        border-color: var(--slate);
+      }
+    }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      border-color: var(--basalt);
+      outline: 2px solid var(--basalt);
+      outline-offset: -2px;
+    }
+    .field:focus-within label { color: var(--basalt); }
+    .field input::placeholder, .field textarea::placeholder {
+      color: var(--slate);
+      opacity: 0.78;
     }
     .field textarea { min-height: 132px; resize: vertical; }
     .field--wide { grid-column: 1 / -1; }
@@ -554,12 +569,45 @@
       align-items: center;
       gap: 14px;
       color: var(--basalt);
+      cursor: pointer;
       font-size: 18px;
       letter-spacing: 0;
       line-height: 1.45;
       text-transform: none;
     }
-    .check-field input { width: 24px; height: 24px; flex: 0 0 auto; margin: 0; }
+    .check-field input {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      margin: 0;
+      appearance: none;
+      border: 1px solid var(--slate);
+      border-radius: 0;
+      background-color: var(--paper);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 14px 12px;
+      cursor: pointer;
+    }
+    @media (hover: hover) {
+      .check-field label:hover input { border-color: var(--basalt); }
+    }
+    .check-field input:checked {
+      border-color: var(--basalt);
+      background-color: var(--basalt);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 12'%3E%3Cpath d='M1.5 6.2 5 9.7 12.5 2.3' fill='none' stroke='%23f2ede6' stroke-width='1.7' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+    }
+    .check-field input:focus-visible {
+      border-color: var(--basalt);
+      outline: 2px solid var(--basalt);
+      outline-offset: -2px;
+    }
+    .check-field input:checked:focus-visible { outline-color: var(--paper); }
+    .check-field input:focus-visible + .check-label {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 5px;
+    }
     .prototype-button {
       min-height: 52px;
       padding: 0 22px;
@@ -657,6 +705,20 @@
       .site-footer, .field input, .field select, .field textarea { border-color: CanvasText; }
       .floor-tile { forced-color-adjust: none; }
       .choice:has(input:checked) { outline: 2px solid CanvasText; outline-offset: -5px; }
+      .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+        border-color: Highlight;
+        outline-color: Highlight;
+      }
+      .check-field input {
+        appearance: auto;
+        border: 0;
+        background: Canvas;
+        accent-color: Highlight;
+      }
+      .check-field input:focus-visible {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+      }
     }
   </style>
 </head>
@@ -1017,7 +1079,7 @@
               <div class="check-field">
                 <label for="quote-graphic">
                   <input id="quote-graphic" name="graphic" type="checkbox">
-                  Interested in a custom center graphic
+                  <span class="check-label">Interested in a custom center graphic</span>
                 </label>
               </div>
               <div class="field field--wide">
