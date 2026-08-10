@@ -1,0 +1,1252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dance Floor Bros — Modular dance floor rental in Kansas City</title>
+  <meta name="description" content="Dance Floor Bros rents modular dance floors for weddings and events across the Kansas City metro and beyond, with delivery and installation by the owners.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/fonts/eb-garamond-embedded.css">
+  <style>
+    :root {
+      --stone: #f2ede6;
+      --basalt: #1c1a17;
+      --slate: #615950;
+      --clay: #6e4c39;
+      --rule: #b8b2aa;
+      --paper: #faf7f1;
+      --wood: #9b7457;
+      --section: 112px;
+      --block: 40px;
+      --pair: 16px;
+      --content: 1160px;
+      --measure: 650px;
+      --page-pad: max(32px, calc((100vw - var(--content)) / 2));
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--stone); scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      background: var(--stone);
+      color: var(--basalt);
+      font-family: "EB Garamond", Garamond, Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, input, select, textarea { color: inherit; font: inherit; }
+    :focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+
+    .skip-link {
+      position: absolute;
+      z-index: 20;
+      top: 12px;
+      left: -9999px;
+      padding: 12px 16px;
+      background: var(--basalt);
+      color: var(--stone);
+      text-decoration: none;
+    }
+    .skip-link:focus { left: 12px; }
+
+    .wrap {
+      width: min(calc(100% - 64px), var(--content));
+      margin-inline: auto;
+    }
+    .measure { max-width: var(--measure); }
+    .section { padding-block: var(--section); }
+    .pair { margin-top: var(--pair); }
+    .block { margin-top: var(--block); }
+
+    h1, h2, h3, p, figure, ul, dl, dd { margin: 0; }
+    h1, h2, h3 { font-weight: 400; text-wrap: balance; }
+    h1 {
+      max-width: 700px;
+      font-size: clamp(48px, 5.3vw, 76px);
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+    }
+    h2 {
+      font-size: clamp(38px, 4.2vw, 60px);
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+    }
+    h3 { font-size: 27px; line-height: 1.15; }
+    p, li, dd { font-size: 18px; line-height: 1.65; }
+    .lead { font-size: 23px; line-height: 1.5; }
+    .eyebrow, .caption, label, dt, .button-label {
+      color: var(--slate);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .caption { display: block; }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .site-header {
+      height: 78px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--stone);
+    }
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .brand-lockup {
+      width: 240px;
+      min-width: 0;
+      display: block;
+      color: var(--basalt);
+      text-decoration: none;
+    }
+    .brand-lockup svg { width: 100%; height: auto; }
+    .primary-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .primary-nav a, .mobile-quote {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--slate);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .primary-nav a:hover, .mobile-quote:hover { color: var(--basalt); }
+    .primary-nav .quote-link, .mobile-quote {
+      color: var(--basalt);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 6px;
+    }
+    .mobile-quote { display: none; }
+
+    .hero {
+      min-height: 0;
+      padding: 72px 0 96px;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
+      gap: clamp(48px, 7vw, 96px);
+      align-items: start;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-width: 0;
+      padding: 28px 0 0;
+    }
+    .hero h1 { max-width: 620px; margin-top: 20px; }
+    .hero .lead { max-width: 610px; margin-top: 28px; }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+      align-items: center;
+      margin-top: 36px;
+    }
+    .text-link {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 1px solid currentColor;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .text-link--quiet { border-bottom-color: transparent; color: var(--slate); }
+    .text-link--quiet:hover { border-bottom-color: currentColor; }
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px 20px;
+      margin: 48px 0 0;
+      padding: 22px 0 0;
+      border-top: 1px solid var(--rule);
+      list-style: none;
+    }
+    .hero-facts li { color: var(--slate); font-size: 16px; }
+    .hero-facts li + li::before { content: "·"; margin-right: 20px; }
+    .hero-photo {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      width: 100%;
+      max-width: 470px;
+      margin-left: auto;
+      background: transparent;
+      color: var(--basalt);
+    }
+    .hero-photo img {
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+    .hero-photo figcaption { padding: 12px 0 0; }
+    .hero-photo .caption { color: var(--slate); }
+
+    .pattern-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--basalt);
+      color: var(--stone);
+    }
+    .pattern-section .eyebrow, .pattern-section .caption { color: #c9c1b6; }
+    .pattern-section__inner { position: relative; }
+    .section-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.7fr);
+      gap: 72px;
+      align-items: end;
+    }
+    .section-intro h2 { max-width: 700px; margin-top: var(--pair); }
+    .section-intro .lead { max-width: 480px; }
+    .pattern-workbench {
+      display: grid;
+      grid-template-columns: minmax(360px, 0.9fr) minmax(360px, 1.1fr);
+      gap: clamp(48px, 7vw, 96px);
+      align-items: start;
+      margin-top: 72px;
+    }
+    .floor-preview { margin: 0; }
+    .floor-grid {
+      width: min(100%, 540px);
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      aspect-ratio: 1;
+      border: 1px solid #d7d0c6;
+      background: var(--paper);
+    }
+    .floor-tile {
+      position: relative;
+      min-width: 0;
+      border: 0.5px solid rgba(110, 76, 57, 0.4);
+      background: #f7f3ec;
+    }
+    .floor-tile[data-finish="black"] { background: #171512; }
+    .floor-tile[data-finish="white"] { background: #f8f5ef; }
+    .floor-tile[data-finish="wood"] { background: var(--wood); }
+    .floor-tile[data-finish="wood"]::before,
+    .floor-tile[data-finish="wood"]::after {
+      content: "";
+      position: absolute;
+      right: 8%;
+      left: 8%;
+      height: 1px;
+      background: rgba(47, 31, 21, 0.38);
+    }
+    .floor-tile[data-finish="wood"]::before { top: 34%; }
+    .floor-tile[data-finish="wood"]::after { top: 68%; }
+    .floor-preview figcaption { max-width: 540px; margin-top: 18px; }
+    .pattern-controls h3 { font-size: clamp(31px, 3vw, 42px); }
+    .pattern-description { min-height: 88px; margin-top: 14px; color: #d7d0c6; }
+    .pattern-interactive { margin-top: 30px; }
+    .control-label, .pattern-builder legend {
+      color: #c9c1b6;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .pattern-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      margin-top: 12px;
+      border-top: 1px solid #6f675d;
+      border-left: 1px solid #6f675d;
+    }
+    .pattern-button {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 13px;
+      align-items: center;
+      padding: 13px 15px;
+      border: 0;
+      border-right: 1px solid #6f675d;
+      border-bottom: 1px solid #6f675d;
+      background: transparent;
+      color: var(--stone);
+      cursor: pointer;
+      text-align: left;
+    }
+    .pattern-button:hover { background: rgba(242, 237, 230, 0.07); }
+    .pattern-button:focus-visible { position: relative; z-index: 2; }
+    .pattern-swatch {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border: 1px solid currentColor;
+      background: #f8f5ef;
+    }
+    .pattern-swatch::before,
+    .pattern-swatch::after {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      background: #171512;
+    }
+    .pattern-swatch::before { top: 0; left: 0; }
+    .pattern-swatch::after { right: 0; bottom: 0; }
+    .pattern-button[data-pattern="solid-black"] .pattern-swatch { background: #171512; }
+    .pattern-button[data-pattern="solid-black"] .pattern-swatch::before,
+    .pattern-button[data-pattern="solid-black"] .pattern-swatch::after,
+    .pattern-button[data-pattern="solid-white"] .pattern-swatch::before,
+    .pattern-button[data-pattern="solid-white"] .pattern-swatch::after { content: none; }
+    .pattern-button[data-pattern="solid-white"] .pattern-swatch { background: #f8f5ef; }
+    .pattern-button[data-pattern="wood-border"] .pattern-swatch { background: var(--wood); }
+    .pattern-button[data-pattern="wood-border"] .pattern-swatch::before {
+      inset: 5px;
+      width: auto;
+      height: auto;
+      background: #171512;
+    }
+    .pattern-button[data-pattern="wood-border"] .pattern-swatch::after {
+      right: 5px;
+      bottom: 5px;
+      width: 8px;
+      height: 8px;
+      background: #f8f5ef;
+    }
+    .pattern-button[data-pattern="black-border"] .pattern-swatch { background: #171512; }
+    .pattern-button[data-pattern="black-border"] .pattern-swatch::before {
+      inset: 5px;
+      width: auto;
+      height: auto;
+      background: #f8f5ef;
+    }
+    .pattern-button[data-pattern="black-border"] .pattern-swatch::after {
+      right: 5px;
+      bottom: 5px;
+      width: 8px;
+      height: 8px;
+      background: #171512;
+    }
+    .pattern-button[data-pattern="wood-black"] .pattern-swatch { background: var(--wood); }
+    .pattern-builder {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid #6f675d;
+    }
+    .pattern-builder fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    .pattern-builder fieldset + fieldset { margin-top: 24px; }
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 12px;
+      border-top: 1px solid #6f675d;
+      border-left: 1px solid #6f675d;
+    }
+    .choice-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .choice {
+      min-height: 52px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 11px 12px;
+      border-right: 1px solid #6f675d;
+      border-bottom: 1px solid #6f675d;
+      color: #e3ddd4;
+      cursor: pointer;
+    }
+    .choice input {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      margin: 0;
+      accent-color: #c08e68;
+    }
+    .choice:has(input:checked) { background: rgba(242, 237, 230, 0.1); color: var(--stone); }
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .material-control span {
+      display: block;
+      margin-bottom: 8px;
+      color: #c9c1b6;
+      font-size: 14px;
+    }
+    .material-control select {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 38px 10px 12px;
+      border: 1px solid #6f675d;
+      border-radius: 0;
+      background: var(--basalt);
+      color: var(--stone);
+    }
+    .material-control option { background: var(--stone); color: var(--basalt); }
+    .builder-help { margin-top: 16px; color: #c9c1b6; font-size: 16px; }
+    .pattern-note {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid #6f675d;
+      color: #c9c1b6;
+      font-size: 16px;
+    }
+
+    .sizing-grid, .graphic-grid, .about-grid {
+      display: grid;
+      gap: clamp(52px, 8vw, 104px);
+      align-items: center;
+    }
+    .sizing-grid { grid-template-columns: minmax(320px, 5fr) minmax(0, 7fr); }
+    .graphic-grid, .about-grid { grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr); }
+    .sizing-copy h2, .graphic-copy h2, .about-copy h2 { margin-top: var(--pair); }
+    .sizing-copy .lead, .graphic-copy .lead, .about-copy .lead { margin-top: 24px; }
+    .sizing-copy p + p, .graphic-copy p + p, .about-copy p + p { margin-top: var(--pair); }
+    .reference-points {
+      margin-top: var(--block);
+      border-top: 1px solid var(--rule);
+      font-variant-numeric: tabular-nums;
+    }
+    .reference-points > div {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding-block: 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .reference-points dt, .reference-points dd { line-height: 1.4; }
+    .reference-points dt { color: var(--basalt); }
+    .reference-points dd { color: var(--slate); text-align: right; }
+    .reference-note { margin-top: 14px; color: var(--slate); font-size: 16px; }
+    .panel-datum {
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+      margin-top: 28px;
+      padding-block: 18px;
+      border-block: 1px solid var(--rule);
+    }
+    .panel-datum strong { font-size: clamp(40px, 5vw, 64px); font-weight: 400; line-height: 1; }
+    .panel-datum span { color: var(--slate); font-size: 16px; }
+    .example-label { margin-top: 30px; color: var(--clay); }
+    .photo-block img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+    .photo-block figcaption { margin-top: 14px; }
+
+    .graphic-section { border-block: 1px solid var(--rule); background: var(--paper); }
+    .graphic-diagram { margin: 0; }
+    .graphic-diagram svg { width: min(100%, 520px); height: auto; }
+    .graphic-diagram figcaption { max-width: 520px; margin-top: 16px; }
+    .graphic-sizes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      margin: var(--block) 0 0;
+      padding: 0;
+      border-block: 1px solid var(--rule);
+      list-style: none;
+      font-variant-numeric: tabular-nums;
+    }
+    .graphic-sizes li { padding: 14px 10px 14px 0; }
+    .graphic-sizes li + li { padding-left: 16px; border-left: 1px solid var(--rule); }
+    .graphic-sizes strong { display: block; font-size: 23px; font-weight: 400; }
+    .graphic-sizes span { color: var(--slate); font-size: 14px; }
+
+    .about-photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+    .about-photo figcaption { margin-top: 14px; }
+
+    .quote-section { border-top: 1px solid var(--rule); }
+    .quote-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.75fr);
+      gap: 72px;
+      align-items: end;
+    }
+    .quote-intro h2 { margin-top: var(--pair); }
+    .prototype-note {
+      padding: 16px 0;
+      border-block: 1px solid var(--clay);
+      color: var(--clay);
+    }
+    .quote-form { margin-top: 36px; }
+    .quote-group {
+      min-width: 0;
+      margin: 0;
+      padding: 28px 0 34px;
+      border: 0;
+      border-top: 1px solid var(--rule);
+    }
+    .quote-group:last-of-type { border-bottom: 1px solid var(--rule); }
+    .quote-group legend {
+      padding: 0 16px 0 0;
+      color: var(--clay);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .quote-group-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px 28px;
+    }
+    .field label { display: block; }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 9px;
+      padding: 11px 12px;
+      border: 1px solid var(--slate);
+      border-radius: 0;
+      background: transparent;
+      font-size: 18px;
+    }
+    .field textarea { min-height: 132px; resize: vertical; }
+    .field--wide { grid-column: 1 / -1; }
+    .check-field {
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      grid-column: 1 / -1;
+      padding: 12px 0;
+      border-block: 1px solid var(--rule);
+    }
+    .check-field label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--basalt);
+      font-size: 18px;
+      letter-spacing: 0;
+      line-height: 1.45;
+      text-transform: none;
+    }
+    .check-field input { width: 24px; height: 24px; flex: 0 0 auto; margin: 0; }
+    .prototype-button {
+      min-height: 52px;
+      padding: 0 22px;
+      border: 1px solid var(--rule);
+      border-radius: 0;
+      background: transparent;
+      color: var(--slate);
+      cursor: not-allowed;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .quote-action { margin-top: 28px; }
+
+    .site-footer {
+      padding-block: 48px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .site-footer .brand-lockup { width: 208px; }
+    .footer-copy p { margin-top: 12px; color: var(--slate); }
+    .footer-note { max-width: 340px; text-align: right; }
+
+    @media (max-width: 1040px) {
+      :root { --page-pad: 32px; }
+      .hero-inner { grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr); gap: 48px; }
+      .primary-nav ul { gap: 18px; }
+      .section-intro { gap: 48px; }
+      .pattern-workbench { gap: 48px; }
+    }
+
+    @media (max-width: 840px) {
+      .primary-nav { display: none; }
+      .mobile-quote { display: inline-flex; min-height: 44px; align-items: center; }
+      .hero { padding: 56px 0 72px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 44px; }
+      .hero-copy { padding: 0; }
+      .hero-photo { max-width: none; margin-left: 0; }
+      .hero-photo img { aspect-ratio: 4 / 3; }
+      .section-intro, .quote-intro { grid-template-columns: 1fr; gap: 24px; }
+      .pattern-workbench { grid-template-columns: 1fr; }
+      .floor-grid { margin-inline: auto; }
+      .floor-preview figcaption { margin-inline: auto; }
+      .sizing-grid, .graphic-grid, .about-grid { gap: 48px; }
+    }
+
+    @media (max-width: 680px) {
+      :root { --section: 78px; --block: 32px; --page-pad: 24px; }
+      html { scroll-behavior: auto; }
+      .wrap { width: min(calc(100% - 48px), var(--content)); }
+      .site-header { height: 68px; }
+      .brand-lockup { width: clamp(174px, 56vw, 214px); }
+      .hero { padding: 42px 0 62px; }
+      .hero h1 { margin-top: 16px; }
+      .hero .lead { margin-top: 22px; }
+      .hero-facts { display: grid; gap: 5px; margin-top: 36px; }
+      .hero-facts li + li::before { content: none; }
+      .hero-photo img { aspect-ratio: 4 / 3; }
+      .section-intro { gap: 20px; }
+      .pattern-workbench { margin-top: 48px; }
+      .pattern-buttons { grid-template-columns: 1fr; }
+      .pattern-button { min-height: 68px; }
+      .choice-grid, .material-grid { grid-template-columns: 1fr; }
+      .sizing-grid, .graphic-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sizing-grid .photo-block, .about-grid .about-photo { order: -1; }
+      .graphic-sizes { grid-template-columns: 1fr; }
+      .graphic-sizes li { padding: 13px 0; }
+      .graphic-sizes li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+      .quote-group-grid { grid-template-columns: 1fr; }
+      .field--wide { grid-column: auto; }
+      .footer-inner { display: grid; }
+      .footer-note { text-align: left; }
+    }
+
+    @media (max-width: 380px) {
+      .header-inner { gap: 12px; }
+      .brand-lockup { width: 176px; }
+      .mobile-quote { font-size: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media (forced-colors: active) {
+      .site-header, .hero-facts, .pattern-buttons, .pattern-button, .pattern-note,
+      .pattern-builder, .choice-grid, .choice, .material-control select,
+      .reference-points, .reference-points > div, .graphic-section, .graphic-sizes,
+      .graphic-sizes li, .quote-section, .quote-group, .prototype-note,
+      .site-footer, .field input, .field select, .field textarea { border-color: CanvasText; }
+      .floor-tile { forced-color-adjust: none; }
+      .choice:has(input:checked) { outline: 2px solid CanvasText; outline-offset: -5px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand-lockup" data-logo="plan-pair" href="#top" aria-label="Dance Floor Bros — home">
+        <svg viewBox="16 16 688 128" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-width="3">
+            <path d="M24 44H116V136H24Z M70 44V136 M24 90H116"/>
+            <path d="M90 24H142V116H90 M90 70H142"/>
+          </g>
+          <text x="178" y="104" fill="currentColor" font-family="EB Garamond, Georgia, serif" font-size="68" letter-spacing="-1.9">Dance Floor Bros</text>
+          <path d="M180 127H697" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#layouts">Layouts</a></li>
+          <li><a href="#sizing">Sizing</a></li>
+          <li><a href="#graphics">Graphics</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a class="quote-link" href="#quote">Request a quote</a></li>
+        </ul>
+      </nav>
+      <a class="mobile-quote" href="#quote">Quote</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Dance Floor Bros · Kansas City</span>
+          <h1 id="hero-title">Modular dance floors, delivered and installed.</h1>
+          <p class="lead">Dance Floor Bros rents dance floors for weddings and events across the Kansas City metro and beyond.</p>
+          <div class="hero-actions">
+            <a class="text-link" href="#quote">Request a quote</a>
+            <a class="text-link text-link--quiet" href="#layouts">Explore floor layouts</a>
+          </div>
+          <ul class="hero-facts" aria-label="Service overview">
+            <li>Black, white and wood</li>
+            <li>Three-foot-square panels</li>
+            <li>Delivered by the owners</li>
+          </ul>
+        </div>
+        <figure class="hero-photo">
+          <img src="img/hero.jpg" width="600" height="800" fetchpriority="high"
+               alt="A timber reception hall at The Venue at Stockton Lake, with long tables in white linen, string lights overhead, and a black-and-white checkerboard dance floor through the center of the room.">
+          <figcaption><span class="caption">The Venue at Stockton Lake · Black-and-white checkerboard</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section pattern-section" id="layouts" aria-labelledby="layouts-title">
+      <div class="wrap pattern-section__inner">
+        <div class="section-intro">
+          <div>
+            <span class="eyebrow">Floor layouts</span>
+            <h2 id="layouts-title">Black, white and wood—in different combinations.</h2>
+          </div>
+          <p class="lead">Choose a solid or checkerboard field, then add no border, a solid border, or a checker border. Every control uses the confirmed black, white and wood finishes.</p>
+        </div>
+
+        <div class="pattern-workbench">
+          <figure class="floor-preview">
+            <div class="floor-grid" id="floor-grid" role="img" aria-label="Six-by-six planning-grid illustration of a black-and-white checkerboard floor">
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
+              <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
+            </div>
+            <figcaption class="caption" id="pattern-caption">Drawing · Configuration preview · 6 × 6 planning grid · 36 panels</figcaption>
+          </figure>
+
+          <div class="pattern-controls">
+            <h3 id="pattern-name">Black-and-white checkerboard</h3>
+            <p class="pattern-description" id="pattern-description">Alternating black and white panels across the full floor. In this planning grid: 18 black and 18 white panels.</p>
+            <p class="visually-hidden" id="pattern-status" role="status" aria-live="polite" aria-atomic="true"></p>
+
+            <div class="pattern-interactive" id="pattern-interactive" hidden>
+              <p class="control-label">Start with an example</p>
+              <div class="pattern-buttons" role="group" aria-label="Start with an example floor layout">
+                <button class="pattern-button" type="button" data-pattern="checker">
+                  <span class="pattern-swatch" aria-hidden="true"></span><span>Black-and-white checker</span>
+                </button>
+                <button class="pattern-button" type="button" data-pattern="solid-black">
+                  <span class="pattern-swatch" aria-hidden="true"></span><span>All black</span>
+                </button>
+                <button class="pattern-button" type="button" data-pattern="solid-white">
+                  <span class="pattern-swatch" aria-hidden="true"></span><span>All white</span>
+                </button>
+                <button class="pattern-button" type="button" data-pattern="wood-border">
+                  <span class="pattern-swatch" aria-hidden="true"></span><span>Wood border + checker</span>
+                </button>
+                <button class="pattern-button" type="button" data-pattern="black-border">
+                  <span class="pattern-swatch" aria-hidden="true"></span><span>Black border + checker</span>
+                </button>
+                <button class="pattern-button" type="button" data-pattern="wood-black">
+                  <span class="pattern-swatch" aria-hidden="true"></span><span>Wood-and-black checker</span>
+                </button>
+              </div>
+
+              <div class="pattern-builder" id="pattern-builder">
+                <fieldset>
+                  <legend>1. Choose the field</legend>
+                  <div class="choice-grid choice-grid--two">
+                    <label class="choice"><input type="radio" name="pattern-base-style" value="solid"><span>Solid</span></label>
+                    <label class="choice"><input type="radio" name="pattern-base-style" value="checker" checked><span>Checkerboard</span></label>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>2. Choose the border</legend>
+                  <div class="choice-grid">
+                    <label class="choice"><input type="radio" name="pattern-border-style" value="none" checked><span>No border</span></label>
+                    <label class="choice"><input type="radio" name="pattern-border-style" value="solid"><span>Solid border</span></label>
+                    <label class="choice"><input type="radio" name="pattern-border-style" value="checker"><span>Checker border</span></label>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>3. Choose the finishes</legend>
+                  <div class="material-grid">
+                    <label class="material-control" id="base-solid-control" for="pattern-base-solid-finish" hidden>
+                      <span>Field finish</span>
+                      <select id="pattern-base-solid-finish">
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="wood">Wood</option>
+                      </select>
+                    </label>
+                    <label class="material-control" id="base-checker-control" for="pattern-base-checker-pair">
+                      <span>Field finishes</span>
+                      <select id="pattern-base-checker-pair">
+                        <option value="black-white">Black + white</option>
+                        <option value="black-wood">Black + wood</option>
+                        <option value="white-wood">White + wood</option>
+                      </select>
+                    </label>
+                    <label class="material-control" id="border-solid-control" for="pattern-border-solid-finish" hidden>
+                      <span>Border finish</span>
+                      <select id="pattern-border-solid-finish" disabled>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="wood">Wood</option>
+                      </select>
+                    </label>
+                    <label class="material-control" id="border-checker-control" for="pattern-border-checker-pair" hidden>
+                      <span>Border finishes</span>
+                      <select id="pattern-border-checker-pair" disabled>
+                        <option value="black-white">Black + white</option>
+                        <option value="black-wood">Black + wood</option>
+                        <option value="white-wood">White + wood</option>
+                      </select>
+                    </label>
+                  </div>
+                </fieldset>
+                <p class="builder-help">This builder covers 36 distinct solid and checkerboard drawings. It does not check panel inventory or reserve a floor.</p>
+              </div>
+            </div>
+            <p class="pattern-note"><strong>Illustration only.</strong> This pattern preview is not an inventory or availability check. Final layout, size, and availability are confirmed with the quote.</p>
+            <noscript><p class="pattern-note">The default checkerboard drawing remains visible, but the combination controls require JavaScript.</p></noscript>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sizing" aria-labelledby="sizing-title">
+      <div class="wrap sizing-grid">
+        <div class="sizing-copy">
+          <span class="eyebrow">Modular sizing</span>
+          <h2 id="sizing-title">Sized for the venue and the event.</h2>
+          <div class="panel-datum"><strong>3 × 3 ft</strong><span>modular panels</span></div>
+          <p class="lead">Each floor is assembled panel by panel. The venue, room layout, and what you want from the space determine the floor size.</p>
+          <p>Share the available area when you request a quote. Floors are installed indoors on a hard, level surface.</p>
+          <p class="eyebrow example-label">Two examples—not a size menu</p>
+          <dl class="reference-points" aria-label="Example floor layouts">
+            <div><dt>Example · 18 × 18 ft</dt><dd>6 × 6 grid · 36 panels</dd></div>
+            <div><dt>Example · 24 × 24 ft</dt><dd>8 × 8 grid · 64 panels</dd></div>
+          </dl>
+          <p class="reference-note">These examples show the panel math, not the full range of possible layouts.</p>
+        </div>
+        <figure class="photo-block">
+          <picture>
+            <source media="(max-width: 760px)" srcset="img/floor-m.jpg">
+            <img src="img/floor.jpg" width="1440" height="1500" loading="lazy" decoding="async"
+                 alt="A black-and-white checkerboard dance floor at The Ridge, laid beneath a ring chandelier with a stone fireplace and timber roof trusses beyond it.">
+          </picture>
+          <figcaption><span class="caption">The Ridge · Black-and-white checkerboard</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section graphic-section" id="graphics" aria-labelledby="graphics-title">
+      <div class="wrap graphic-grid">
+        <figure class="graphic-diagram">
+          <svg viewBox="0 0 520 520" role="img" aria-labelledby="graphic-diagram-title graphic-diagram-desc">
+            <title id="graphic-diagram-title">Illustration of a printed graphic centered on a dance floor</title>
+            <desc id="graphic-diagram-desc">A black-and-white checkerboard floor drawing with a warm rectangular graphic area centered over the panels. The drawing explains placement, not final scale or seam alignment.</desc>
+            <rect width="520" height="520" fill="#f2ede6"/>
+            <g id="graphic-checker">
+              <path fill="#1c1a17" d="M0 0h65v65H0zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65zM65 65h65v65H65zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65zM0 130h65v65H0zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65zM65 195h65v65H65zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65zM0 260h65v65H0zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65zM65 325h65v65H65zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65zM0 390h65v65H0zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65zM65 455h65v65H65zm130 0h65v65h-65zm130 0h65v65h-65zm130 0h65v65h-65z"/>
+              <g fill="none" stroke="#b8b2aa" stroke-width="1">
+                <path d="M65 0v520M130 0v520M195 0v520M260 0v520M325 0v520M390 0v520M455 0v520"/>
+                <path d="M0 65h520M0 130h520M0 195h520M0 260h520M0 325h520M0 390h520M0 455h520"/>
+              </g>
+            </g>
+            <rect x="145" y="176" width="230" height="168" fill="#f2ede6" stroke="#6e4c39" stroke-width="5"/>
+            <text x="260" y="246" fill="#1c1a17" font-family="EB Garamond, Georgia, serif" font-size="26" text-anchor="middle">Your graphic</text>
+            <text x="260" y="278" fill="#615950" font-family="EB Garamond, Georgia, serif" font-size="18" text-anchor="middle">centered on the floor</text>
+          </svg>
+          <figcaption class="caption">Drawing · Center placement example · Final scale and artwork confirmed with the quote</figcaption>
+        </figure>
+        <div class="graphic-copy">
+          <span class="eyebrow">Custom center graphics</span>
+          <h2 id="graphics-title">Add a printed graphic to the center.</h2>
+          <p class="lead">Custom vinyl graphics are placed at the center of the floor. Ask about artwork requirements and timing with your quote.</p>
+          <ul class="graphic-sizes" aria-label="Available printed graphic sizes">
+            <li><strong>3 × 4 ft</strong><span>Printed graphic</span></li>
+            <li><strong>5 × 6 ft</strong><span>Printed graphic</span></li>
+            <li><strong>6 × 6 ft</strong><span>Printed graphic</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <figure class="about-photo">
+          <img src="img/install.jpg" width="526" height="658" loading="lazy" decoding="async"
+               alt="A black-and-white checkerboard dance floor on polished concrete at The Ridge, with banquet tables and a stone fireplace beyond it.">
+          <figcaption><span class="caption">The Ridge · Indoor installation on polished concrete</span></figcaption>
+        </figure>
+        <div class="about-copy">
+          <span class="eyebrow">About Dance Floor Bros</span>
+          <h2 id="about-title">Every floor is delivered and laid by Shayan and Sam.</h2>
+          <p class="lead">The owners personally bring and install every Dance Floor Bros floor.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quote-section" id="quote" aria-labelledby="quote-title">
+      <div class="wrap">
+        <div class="quote-intro">
+          <div>
+            <span class="eyebrow">Request a quote</span>
+            <h2 id="quote-title">Tell us about the event and the venue.</h2>
+          </div>
+          <div>
+            <p class="lead">Every floor is quoted. Share the date, venue, room details, and the look you want. Not sure about the size yet? That is fine.</p>
+          </div>
+        </div>
+        <p class="prototype-note block" id="prototype-note" role="note"><strong>Prototype only.</strong> This form is not connected and does not send information.</p>
+
+        <form class="quote-form" aria-describedby="prototype-note" onsubmit="return false;">
+          <fieldset class="quote-group">
+            <legend>Event and contact</legend>
+            <div class="quote-group-grid">
+              <div class="field">
+                <label for="quote-name">Name</label>
+                <input id="quote-name" name="name" type="text" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="quote-email">Email</label>
+                <input id="quote-email" name="email" type="email" autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="quote-phone">Phone</label>
+                <input id="quote-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+              <div class="field">
+                <label for="quote-date">Event date</label>
+                <input id="quote-date" name="date" type="date">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="quote-group">
+            <legend>Venue and available area</legend>
+            <div class="quote-group-grid">
+              <div class="field">
+                <label for="quote-venue">Venue name</label>
+                <input id="quote-venue" name="venue" type="text" autocomplete="organization">
+              </div>
+              <div class="field">
+                <label for="quote-location">Venue city and state</label>
+                <input id="quote-location" name="location" type="text" autocomplete="address-level2" placeholder="Kansas City, MO">
+              </div>
+              <div class="field">
+                <label for="quote-guests">Estimated guest count</label>
+                <input id="quote-guests" name="guests" type="number" min="1" inputmode="numeric">
+              </div>
+              <div class="field">
+                <label for="quote-size">Floor size or available area</label>
+                <input id="quote-size" name="size" type="text" placeholder="Not sure yet is fine">
+              </div>
+              <div class="field field--wide">
+                <label for="quote-surface">Existing surface</label>
+                <select id="quote-surface" name="surface">
+                  <option value="">Choose one</option>
+                  <option>Indoor, hard, and level</option>
+                  <option>Not sure yet</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="quote-group">
+            <legend>Floor direction and custom graphic</legend>
+            <div class="quote-group-grid">
+              <div class="field field--wide">
+                <label for="quote-layout">Preferred floor layout</label>
+                <select id="quote-layout" name="layout">
+                  <option value="">Not sure yet</option>
+                  <option>All black</option>
+                  <option>All white</option>
+                  <option>Black-and-white checkerboard</option>
+                  <option>Wood or mixed combination</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+              <div class="check-field">
+                <label for="quote-graphic">
+                  <input id="quote-graphic" name="graphic" type="checkbox">
+                  Interested in a custom center graphic
+                </label>
+              </div>
+              <div class="field field--wide">
+                <label for="quote-notes">Additional details</label>
+                <textarea id="quote-notes" name="notes" rows="5" placeholder="Tell us about the room, the floor you have in mind, and any custom graphic."></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="quote-action">
+            <button class="prototype-button" type="button" disabled>Quote form not connected</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-copy">
+        <div class="brand-lockup" data-logo="plan-pair" role="img" aria-label="Dance Floor Bros">
+          <svg viewBox="16 16 688 128" aria-hidden="true" focusable="false">
+            <g fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M24 44H116V136H24Z M70 44V136 M24 90H116"/>
+              <path d="M90 24H142V116H90 M90 70H142"/>
+            </g>
+            <text x="178" y="104" fill="currentColor" font-family="EB Garamond, Georgia, serif" font-size="68" letter-spacing="-1.9">Dance Floor Bros</text>
+            <path d="M180 127H697" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <p>Dance floor rental for weddings and events across the Kansas City metro and beyond.</p>
+      </div>
+      <p class="caption footer-note">Website preview · Quote form does not send</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const grid = document.querySelector("#floor-grid");
+      const tiles = Array.from(grid.querySelectorAll(".floor-tile"));
+      const buttons = Array.from(document.querySelectorAll(".pattern-button"));
+      const name = document.querySelector("#pattern-name");
+      const description = document.querySelector("#pattern-description");
+      const caption = document.querySelector("#pattern-caption");
+      const status = document.querySelector("#pattern-status");
+      const interactive = document.querySelector("#pattern-interactive");
+      const baseStyleInputs = Array.from(document.querySelectorAll('[name="pattern-base-style"]'));
+      const borderStyleInputs = Array.from(document.querySelectorAll('[name="pattern-border-style"]'));
+      const controls = {
+        baseSolidFinish: document.querySelector("#pattern-base-solid-finish"),
+        baseCheckerPair: document.querySelector("#pattern-base-checker-pair"),
+        borderSolidFinish: document.querySelector("#pattern-border-solid-finish"),
+        borderCheckerPair: document.querySelector("#pattern-border-checker-pair")
+      };
+      const controlRows = {
+        baseSolidFinish: document.querySelector("#base-solid-control"),
+        baseCheckerPair: document.querySelector("#base-checker-control"),
+        borderSolidFinish: document.querySelector("#border-solid-control"),
+        borderCheckerPair: document.querySelector("#border-checker-control")
+      };
+
+      const state = {
+        baseStyle: "checker",
+        borderStyle: "none",
+        baseSolidFinish: "black",
+        baseCheckerPair: "black-white",
+        borderSolidFinish: "wood",
+        borderCheckerPair: "black-wood"
+      };
+      const finishNames = { black: "black", white: "white", wood: "wood" };
+      const pairFinishes = {
+        "black-white": ["black", "white"],
+        "black-wood": ["black", "wood"],
+        "white-wood": ["white", "wood"]
+      };
+      const pairNames = {
+        "black-white": "black-and-white",
+        "black-wood": "black-and-wood",
+        "white-wood": "white-and-wood"
+      };
+      const presets = {
+        checker: {
+          baseStyle: "checker",
+          borderStyle: "none",
+          baseCheckerPair: "black-white"
+        },
+        "solid-black": {
+          baseStyle: "solid",
+          borderStyle: "none",
+          baseSolidFinish: "black"
+        },
+        "solid-white": {
+          baseStyle: "solid",
+          borderStyle: "none",
+          baseSolidFinish: "white"
+        },
+        "wood-border": {
+          baseStyle: "checker",
+          borderStyle: "solid",
+          baseCheckerPair: "black-white",
+          borderSolidFinish: "wood"
+        },
+        "black-border": {
+          baseStyle: "checker",
+          borderStyle: "solid",
+          baseCheckerPair: "black-white",
+          borderSolidFinish: "black"
+        },
+        "wood-black": {
+          baseStyle: "checker",
+          borderStyle: "none",
+          baseCheckerPair: "black-wood"
+        }
+      };
+
+      const checkerFinish = (pair, row, column) =>
+        pairFinishes[pair][(row + column) % 2];
+
+      const finishFor = (row, column) => {
+        const edge = row === 0 || row === 5 || column === 0 || column === 5;
+        if (edge && state.borderStyle === "solid") return state.borderSolidFinish;
+        if (edge && state.borderStyle === "checker") {
+          return checkerFinish(state.borderCheckerPair, row, column);
+        }
+        if (state.baseStyle === "solid") return state.baseSolidFinish;
+        return checkerFinish(state.baseCheckerPair, row, column);
+      };
+
+      const titleFor = () => {
+        const field = state.baseStyle === "solid"
+          ? `Solid ${finishNames[state.baseSolidFinish]} field`
+          : `${pairNames[state.baseCheckerPair]} checkerboard`;
+        if (state.borderStyle === "none") return field;
+        const border = state.borderStyle === "solid"
+          ? `${finishNames[state.borderSolidFinish]} border`
+          : `${pairNames[state.borderCheckerPair]} checker border`;
+        return `${border} with ${field.toLowerCase()}`;
+      };
+
+      const countText = () => {
+        const counts = { black: 0, white: 0, wood: 0 };
+        tiles.forEach((tile) => { counts[tile.dataset.finish] += 1; });
+        return Object.entries(counts)
+          .filter(([, count]) => count > 0)
+          .map(([finish, count]) => `${count} ${finishNames[finish]}`)
+          .join(", ");
+      };
+
+      const setControlVisibility = (key, visible) => {
+        controlRows[key].hidden = !visible;
+        controls[key].disabled = !visible;
+      };
+
+      const normalizeBorderChoices = () => {
+        const blockedSolid = state.baseStyle === "solid" ? state.baseSolidFinish : null;
+        Array.from(controls.borderSolidFinish.options).forEach((option) => {
+          option.disabled = option.value === blockedSolid;
+        });
+        if (state.borderStyle === "solid" && state.borderSolidFinish === blockedSolid) {
+          state.borderSolidFinish = Array.from(controls.borderSolidFinish.options)
+            .find((option) => !option.disabled).value;
+        }
+
+        const blockedChecker = state.baseStyle === "checker" ? state.baseCheckerPair : null;
+        Array.from(controls.borderCheckerPair.options).forEach((option) => {
+          option.disabled = option.value === blockedChecker;
+        });
+        if (state.borderStyle === "checker" && state.borderCheckerPair === blockedChecker) {
+          state.borderCheckerPair = Array.from(controls.borderCheckerPair.options)
+            .find((option) => !option.disabled).value;
+        }
+      };
+
+      const syncControls = () => {
+        baseStyleInputs.forEach((input) => { input.checked = input.value === state.baseStyle; });
+        borderStyleInputs.forEach((input) => { input.checked = input.value === state.borderStyle; });
+        Object.entries(controls).forEach(([key, control]) => { control.value = state[key]; });
+        setControlVisibility("baseSolidFinish", state.baseStyle === "solid");
+        setControlVisibility("baseCheckerPair", state.baseStyle === "checker");
+        setControlVisibility("borderSolidFinish", state.borderStyle === "solid");
+        setControlVisibility("borderCheckerPair", state.borderStyle === "checker");
+      };
+
+      const render = (announce = true) => {
+        normalizeBorderChoices();
+        tiles.forEach((tile, index) => {
+          const row = Math.floor(index / 6);
+          const column = index % 6;
+          tile.dataset.finish = finishFor(row, column);
+        });
+        syncControls();
+        const rawTitle = titleFor();
+        const title = rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1);
+        const counts = countText();
+        name.textContent = title;
+        description.textContent = `${title}. In this 6 × 6 planning grid: ${counts} panels.`;
+        caption.textContent = `Drawing · ${title} · Configuration preview · 6 × 6 grid · 36 panels`;
+        grid.setAttribute("aria-label", `Six-by-six illustration of ${title.toLowerCase()}. ${counts} panels.`);
+        if (announce) status.textContent = `${title}. ${counts} panels in this drawing.`;
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          Object.assign(state, presets[button.dataset.pattern]);
+          render();
+        });
+      });
+      baseStyleInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          state.baseStyle = input.value;
+          render();
+        });
+      });
+      borderStyleInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          state.borderStyle = input.value;
+          render();
+        });
+      });
+      Object.entries(controls).forEach(([key, control]) => {
+        control.addEventListener("change", () => {
+          state[key] = control.value;
+          render();
+        });
+      });
+
+      render(false);
+      interactive.hidden = false;
+    })();
+  </script>
+</body>
+</html>
