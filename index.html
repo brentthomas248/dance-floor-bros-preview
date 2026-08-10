@@ -27,7 +27,11 @@
 
     *, *::before, *::after { box-sizing: border-box; }
     [hidden] { display: none !important; }
-    html { background: var(--stone); scroll-behavior: smooth; }
+    html {
+      background: var(--stone);
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
+    }
     body {
       min-width: 320px;
       margin: 0;
@@ -48,7 +52,7 @@
 
     .skip-link {
       position: absolute;
-      z-index: 20;
+      z-index: 200;
       top: 12px;
       left: -9999px;
       padding: 12px 16px;
@@ -105,12 +109,15 @@
     }
 
     .site-header {
-      height: 78px;
+      position: sticky;
+      z-index: 100;
+      top: 0;
+      min-height: 78px;
       border-bottom: 1px solid var(--rule);
       background: var(--stone);
     }
     .header-inner {
-      height: 100%;
+      min-height: 77px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -124,6 +131,7 @@
       text-decoration: none;
     }
     .brand-lockup svg { width: 100%; height: auto; }
+    .primary-nav { min-width: 0; }
     .primary-nav ul {
       display: flex;
       align-items: center;
@@ -132,7 +140,7 @@
       padding: 0;
       list-style: none;
     }
-    .primary-nav a, .mobile-quote {
+    .primary-nav a {
       min-height: 44px;
       display: inline-flex;
       align-items: center;
@@ -142,14 +150,13 @@
       text-decoration: none;
       text-transform: uppercase;
     }
-    .primary-nav a:hover, .mobile-quote:hover { color: var(--basalt); }
-    .primary-nav .quote-link, .mobile-quote {
+    .primary-nav a:hover { color: var(--basalt); }
+    .primary-nav .quote-link {
       color: var(--basalt);
       text-decoration: underline;
       text-decoration-thickness: 1px;
       text-underline-offset: 6px;
     }
-    .mobile-quote { display: none; }
 
     .hero {
       min-height: 0;
@@ -220,6 +227,45 @@
     .hero-photo figcaption { padding: 12px 0 0; }
     .hero-photo .caption { color: var(--slate); }
 
+    .gallery-section {
+      border-block: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    .gallery-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+      gap: 72px;
+      align-items: end;
+    }
+    .gallery-intro h2 { max-width: 760px; margin-top: var(--pair); }
+    .gallery-intro .lead { max-width: 470px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 64px 40px;
+      margin-top: 64px;
+    }
+    .venue-gallery {
+      min-width: 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+    }
+    .venue-gallery h3 { font-size: 24px; }
+    .venue-images {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .venue-images--single { grid-template-columns: 1fr; }
+    .venue-images img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+    .venue-images figcaption { margin-top: 10px; }
+
     .pattern-section {
       position: relative;
       overflow: hidden;
@@ -249,7 +295,7 @@
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
       aspect-ratio: 1;
-      border: 1px solid #d7d0c6;
+      border: 8px solid #0e0d0b;
       background: var(--paper);
     }
     .floor-tile {
@@ -276,7 +322,7 @@
     .pattern-controls h3 { font-size: clamp(31px, 3vw, 42px); }
     .pattern-description { min-height: 88px; margin-top: 14px; color: #d7d0c6; }
     .pattern-interactive { margin-top: 30px; }
-    .control-label, .pattern-builder legend {
+    .control-label {
       color: #c9c1b6;
       font-size: 13px;
       font-weight: 600;
@@ -309,6 +355,22 @@
     }
     .pattern-button:hover { background: rgba(242, 237, 230, 0.07); }
     .pattern-button:focus-visible { position: relative; z-index: 2; }
+    .pattern-button[aria-pressed="true"] {
+      background: rgba(242, 237, 230, 0.12);
+      border-left: 4px solid var(--stone);
+      padding-left: 11px;
+    }
+    .pattern-button-copy { min-width: 0; }
+    .button-state {
+      display: block;
+      visibility: hidden;
+      margin-top: 2px;
+      color: #c9c1b6;
+      font-size: 11px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+    .pattern-button[aria-pressed="true"] .button-state { visibility: visible; }
     .pattern-swatch {
       position: relative;
       width: 28px;
@@ -332,97 +394,15 @@
     .pattern-button[data-pattern="solid-white"] .pattern-swatch::before,
     .pattern-button[data-pattern="solid-white"] .pattern-swatch::after { content: none; }
     .pattern-button[data-pattern="solid-white"] .pattern-swatch { background: #f8f5ef; }
-    .pattern-button[data-pattern="wood-border"] .pattern-swatch { background: var(--wood); }
-    .pattern-button[data-pattern="wood-border"] .pattern-swatch::before {
-      inset: 5px;
-      width: auto;
-      height: auto;
-      background: #171512;
-    }
-    .pattern-button[data-pattern="wood-border"] .pattern-swatch::after {
-      right: 5px;
-      bottom: 5px;
-      width: 8px;
-      height: 8px;
-      background: #f8f5ef;
-    }
-    .pattern-button[data-pattern="black-border"] .pattern-swatch { background: #171512; }
-    .pattern-button[data-pattern="black-border"] .pattern-swatch::before {
-      inset: 5px;
-      width: auto;
-      height: auto;
-      background: #f8f5ef;
-    }
-    .pattern-button[data-pattern="black-border"] .pattern-swatch::after {
-      right: 5px;
-      bottom: 5px;
-      width: 8px;
-      height: 8px;
-      background: #171512;
-    }
-    .pattern-button[data-pattern="wood-black"] .pattern-swatch { background: var(--wood); }
-    .pattern-builder {
-      margin-top: 32px;
-      padding-top: 28px;
-      border-top: 1px solid #6f675d;
-    }
-    .pattern-builder fieldset {
-      min-width: 0;
-      margin: 0;
-      padding: 0;
-      border: 0;
-    }
-    .pattern-builder fieldset + fieldset { margin-top: 24px; }
-    .choice-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 12px;
-      border-top: 1px solid #6f675d;
-      border-left: 1px solid #6f675d;
-    }
-    .choice-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .choice {
-      min-height: 52px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      padding: 11px 12px;
-      border-right: 1px solid #6f675d;
-      border-bottom: 1px solid #6f675d;
-      color: #e3ddd4;
-      cursor: pointer;
-    }
-    .choice input {
-      width: 24px;
-      height: 24px;
-      flex: 0 0 auto;
-      margin: 0;
-      accent-color: #c08e68;
-    }
-    .choice:has(input:checked) { background: rgba(242, 237, 230, 0.1); color: var(--stone); }
-    .material-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-    .material-control span {
-      display: block;
-      margin-bottom: 8px;
-      color: #c9c1b6;
-      font-size: 14px;
-    }
-    .material-control select {
-      width: 100%;
-      min-height: 48px;
-      padding: 10px 38px 10px 12px;
-      border: 1px solid #6f675d;
-      border-radius: 0;
-      background: var(--basalt);
-      color: var(--stone);
-    }
-    .material-control option { background: var(--stone); color: var(--basalt); }
-    .builder-help { margin-top: 16px; color: #c9c1b6; font-size: 16px; }
+    .pattern-button[data-pattern="solid-maple"] .pattern-swatch,
+    .pattern-button[data-pattern="maple-white"] .pattern-swatch,
+    .pattern-button[data-pattern="maple-black"] .pattern-swatch { background: var(--wood); }
+    .pattern-button[data-pattern="solid-maple"] .pattern-swatch::before,
+    .pattern-button[data-pattern="solid-maple"] .pattern-swatch::after { content: none; }
+    .pattern-button[data-pattern="maple-white"] .pattern-swatch::before,
+    .pattern-button[data-pattern="maple-white"] .pattern-swatch::after { background: #f8f5ef; }
+    .pattern-button[data-pattern="maple-black"] .pattern-swatch::before,
+    .pattern-button[data-pattern="maple-black"] .pattern-swatch::after { background: #171512; }
     .pattern-note {
       margin-top: 20px;
       padding-top: 18px;
@@ -639,20 +619,36 @@
     @media (max-width: 1040px) {
       :root { --page-pad: 32px; }
       .hero-inner { grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr); gap: 48px; }
-      .primary-nav ul { gap: 18px; }
+      .primary-nav ul { gap: 15px; }
+      .primary-nav a { letter-spacing: 0.08em; }
       .section-intro { gap: 48px; }
       .pattern-workbench { gap: 48px; }
     }
 
     @media (max-width: 840px) {
-      .primary-nav { display: none; }
-      .mobile-quote { display: inline-flex; min-height: 44px; align-items: center; }
+      html { scroll-padding-top: 116px; }
+      .site-header { min-height: 0; }
+      .header-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2px;
+        padding-top: 10px;
+      }
+      .primary-nav {
+        width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: thin;
+      }
+      .primary-nav ul { width: max-content; gap: 24px; }
+      .primary-nav a { min-height: 50px; }
+      .primary-nav a:focus-visible { outline-offset: -3px; }
       .hero { padding: 56px 0 72px; }
       .hero-inner { grid-template-columns: 1fr; gap: 44px; }
       .hero-copy { padding: 0; }
       .hero-photo { max-width: none; margin-left: 0; }
       .hero-photo img { aspect-ratio: 4 / 3; }
-      .section-intro, .quote-intro { grid-template-columns: 1fr; gap: 24px; }
+      .gallery-intro, .section-intro, .quote-intro { grid-template-columns: 1fr; gap: 24px; }
       .pattern-workbench { grid-template-columns: 1fr; }
       .floor-grid { margin-inline: auto; }
       .floor-preview figcaption { margin-inline: auto; }
@@ -663,7 +659,6 @@
       :root { --section: 78px; --block: 32px; --page-pad: 24px; }
       html { scroll-behavior: auto; }
       .wrap { width: min(calc(100% - 48px), var(--content)); }
-      .site-header { height: 68px; }
       .brand-lockup { width: clamp(174px, 56vw, 214px); }
       .hero { padding: 42px 0 62px; }
       .hero h1 { margin-top: 16px; }
@@ -671,11 +666,11 @@
       .hero-facts { display: grid; gap: 5px; margin-top: 36px; }
       .hero-facts li + li::before { content: none; }
       .hero-photo img { aspect-ratio: 4 / 3; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 52px; margin-top: 48px; }
       .section-intro { gap: 20px; }
       .pattern-workbench { margin-top: 48px; }
       .pattern-buttons { grid-template-columns: 1fr; }
       .pattern-button { min-height: 68px; }
-      .choice-grid, .material-grid { grid-template-columns: 1fr; }
       .sizing-grid, .graphic-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .sizing-grid .photo-block, .about-grid .about-photo { order: -1; }
       .graphic-sizes { grid-template-columns: 1fr; }
@@ -690,7 +685,11 @@
     @media (max-width: 380px) {
       .header-inner { gap: 12px; }
       .brand-lockup { width: 176px; }
-      .mobile-quote { font-size: 12px; }
+      .primary-nav ul { gap: 20px; }
+    }
+
+    @media (max-width: 520px) {
+      .venue-images { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -698,13 +697,13 @@
     }
 
     @media (forced-colors: active) {
-      .site-header, .hero-facts, .pattern-buttons, .pattern-button, .pattern-note,
-      .pattern-builder, .choice-grid, .choice, .material-control select,
+      .site-header, .hero-facts, .gallery-section, .venue-gallery,
+      .pattern-buttons, .pattern-button, .pattern-note,
       .reference-points, .reference-points > div, .graphic-section, .graphic-sizes,
       .graphic-sizes li, .quote-section, .quote-group, .prototype-note,
       .site-footer, .field input, .field select, .field textarea { border-color: CanvasText; }
       .floor-tile { forced-color-adjust: none; }
-      .choice:has(input:checked) { outline: 2px solid CanvasText; outline-offset: -5px; }
+      .pattern-button[aria-pressed="true"] { outline: 2px solid CanvasText; outline-offset: -5px; }
       .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
         border-color: Highlight;
         outline-color: Highlight;
@@ -737,16 +736,16 @@
           <path d="M180 127H697" fill="none" stroke="currentColor" stroke-width="2"/>
         </svg>
       </a>
-      <nav class="primary-nav" aria-label="Primary">
+      <nav class="primary-nav" aria-label="Page sections">
         <ul>
-          <li><a href="#layouts">Layouts</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#layouts">Floor options</a></li>
           <li><a href="#sizing">Sizing</a></li>
-          <li><a href="#graphics">Graphics</a></li>
+          <li><a href="#graphics">Custom graphics</a></li>
           <li><a href="#about">About</a></li>
           <li><a class="quote-link" href="#quote">Request a quote</a></li>
         </ul>
       </nav>
-      <a class="mobile-quote" href="#quote">Quote</a>
     </div>
   </header>
 
@@ -759,7 +758,7 @@
           <p class="lead">Dance Floor Bros rents dance floors for weddings and events across the Kansas City metro and beyond.</p>
           <div class="hero-actions">
             <a class="text-link" href="#quote">Request a quote</a>
-            <a class="text-link text-link--quiet" href="#layouts">Explore floor layouts</a>
+            <a class="text-link text-link--quiet" href="#gallery">See floors in local venues</a>
           </div>
           <ul class="hero-facts" aria-label="Service overview">
             <li>Black, white and wood</li>
@@ -775,19 +774,87 @@
       </div>
     </section>
 
+    <section class="section gallery-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="gallery-intro">
+          <div>
+            <span class="eyebrow">Gallery</span>
+            <h2 id="gallery-title">Picture the floor in the room.</h2>
+          </div>
+          <p class="lead">A look at Dance Floor Bros installations across four venues.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="venue-gallery">
+            <h3>StoneBriar Farm</h3>
+            <div class="venue-images">
+              <figure>
+                <img src="img/sb-wide-daylight.jpg" width="1600" height="1200" loading="lazy" decoding="async"
+                     alt="A black-and-white checkerboard dance floor centered in the bright timber reception room at StoneBriar Farm.">
+                <figcaption><span class="caption">Black-and-white floor · Daylight view</span></figcaption>
+              </figure>
+              <figure>
+                <img src="img/sb-floor-front.jpg" width="1600" height="1200" loading="lazy" decoding="async"
+                     alt="A front view of the black-and-white checkerboard dance floor inside StoneBriar Farm.">
+                <figcaption><span class="caption">Black-and-white floor · Front view</span></figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="venue-gallery">
+            <h3>The Ridge</h3>
+            <div class="venue-images">
+              <figure>
+                <img src="img/ridge-floor-hero.jpg" width="1200" height="1600" loading="lazy" decoding="async"
+                     alt="A black-and-white checkerboard dance floor beneath timber roof trusses and a ring chandelier at The Ridge.">
+                <figcaption><span class="caption">Black-and-white floor · Room view</span></figcaption>
+              </figure>
+              <figure>
+                <img src="img/ridge-floor-angle.jpg" width="1200" height="1600" loading="lazy" decoding="async"
+                     alt="An angled view across the black-and-white checkerboard dance floor toward the stone fireplace at The Ridge.">
+                <figcaption><span class="caption">Black-and-white floor · Fireplace view</span></figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="venue-gallery">
+            <h3>The Venue at Stockton Lake</h3>
+            <div class="venue-images venue-images--single">
+              <figure>
+                <img src="img/stockton-floor.jpg" width="1200" height="1600" loading="lazy" decoding="async"
+                     alt="A black-and-white checkerboard dance floor running through the timber reception hall at The Venue at Stockton Lake.">
+                <figcaption><span class="caption">Black-and-white floor · Reception hall view</span></figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="venue-gallery">
+            <h3>Whiskey Ridge</h3>
+            <div class="venue-images venue-images--single">
+              <figure>
+                <img src="img/wr-dancing-floor.jpg" width="1066" height="1600" loading="lazy" decoding="async"
+                     alt="Guests dancing on a black-and-white checkerboard dance floor under colored reception lighting at Whiskey Ridge.">
+                <figcaption><span class="caption">Black-and-white floor · Dancing</span></figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section pattern-section" id="layouts" aria-labelledby="layouts-title">
       <div class="wrap pattern-section__inner">
         <div class="section-intro">
           <div>
-            <span class="eyebrow">Floor layouts</span>
+            <span class="eyebrow">Floor options</span>
             <h2 id="layouts-title">Black, white and wood—in different combinations.</h2>
           </div>
-          <p class="lead">Choose a solid or checkerboard field, then add no border, a solid border, or a checker border. Every control uses the confirmed black, white and wood finishes.</p>
+          <p class="lead">Explore six finish directions. Every installed floor has the same thin black retaining edge shown around the drawing.</p>
         </div>
 
         <div class="pattern-workbench">
           <figure class="floor-preview">
-            <div class="floor-grid" id="floor-grid" role="img" aria-label="Six-by-six planning-grid illustration of a black-and-white checkerboard floor">
+            <div class="floor-grid" id="floor-grid" role="img" aria-label="Six-by-six floor drawing with 18 black panels, 18 white panels, and a fixed black retaining edge">
               <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
               <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
               <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
@@ -825,96 +892,44 @@
               <span class="floor-tile" data-finish="white" aria-hidden="true"></span>
               <span class="floor-tile" data-finish="black" aria-hidden="true"></span>
             </div>
-            <figcaption class="caption" id="pattern-caption">Drawing · Configuration preview · 6 × 6 planning grid · 36 panels</figcaption>
+            <figcaption class="caption" id="pattern-caption">Drawing · Black + white checkerboard · 6 × 6 planning grid · 36 panels · Fixed black retaining edge</figcaption>
           </figure>
 
           <div class="pattern-controls">
-            <h3 id="pattern-name">Black-and-white checkerboard</h3>
-            <p class="pattern-description" id="pattern-description">Alternating black and white panels across the full floor. In this planning grid: 18 black and 18 white panels.</p>
+            <h3 id="pattern-name">Black + white checkerboard</h3>
+            <p class="pattern-description" id="pattern-description">Black + white checkerboard. In this 6 × 6 planning grid: 18 black and 18 white panels.</p>
             <p class="visually-hidden" id="pattern-status" role="status" aria-live="polite" aria-atomic="true"></p>
 
             <div class="pattern-interactive" id="pattern-interactive" hidden>
-              <p class="control-label">Start with an example</p>
-              <div class="pattern-buttons" role="group" aria-label="Start with an example floor layout">
-                <button class="pattern-button" type="button" data-pattern="checker">
-                  <span class="pattern-swatch" aria-hidden="true"></span><span>Black-and-white checker</span>
+              <p class="control-label">Choose a finish direction</p>
+              <div class="pattern-buttons" role="group" aria-label="Floor finish examples">
+                <button class="pattern-button" type="button" data-pattern="black-white" aria-pressed="true">
+                  <span class="pattern-swatch" aria-hidden="true"></span>
+                  <span class="pattern-button-copy"><span>Black + white</span><span class="button-state" aria-hidden="true">Selected</span></span>
                 </button>
-                <button class="pattern-button" type="button" data-pattern="solid-black">
-                  <span class="pattern-swatch" aria-hidden="true"></span><span>All black</span>
+                <button class="pattern-button" type="button" data-pattern="solid-white" aria-pressed="false">
+                  <span class="pattern-swatch" aria-hidden="true"></span>
+                  <span class="pattern-button-copy"><span>All white</span><span class="button-state" aria-hidden="true">Selected</span></span>
                 </button>
-                <button class="pattern-button" type="button" data-pattern="solid-white">
-                  <span class="pattern-swatch" aria-hidden="true"></span><span>All white</span>
+                <button class="pattern-button" type="button" data-pattern="solid-black" aria-pressed="false">
+                  <span class="pattern-swatch" aria-hidden="true"></span>
+                  <span class="pattern-button-copy"><span>All black</span><span class="button-state" aria-hidden="true">Selected</span></span>
                 </button>
-                <button class="pattern-button" type="button" data-pattern="wood-border">
-                  <span class="pattern-swatch" aria-hidden="true"></span><span>Wood border + checker</span>
+                <button class="pattern-button" type="button" data-pattern="solid-maple" aria-pressed="false">
+                  <span class="pattern-swatch" aria-hidden="true"></span>
+                  <span class="pattern-button-copy"><span>All maple</span><span class="button-state" aria-hidden="true">Selected</span></span>
                 </button>
-                <button class="pattern-button" type="button" data-pattern="black-border">
-                  <span class="pattern-swatch" aria-hidden="true"></span><span>Black border + checker</span>
+                <button class="pattern-button" type="button" data-pattern="maple-white" aria-pressed="false">
+                  <span class="pattern-swatch" aria-hidden="true"></span>
+                  <span class="pattern-button-copy"><span>Maple + white</span><span class="button-state" aria-hidden="true">Selected</span></span>
                 </button>
-                <button class="pattern-button" type="button" data-pattern="wood-black">
-                  <span class="pattern-swatch" aria-hidden="true"></span><span>Wood-and-black checker</span>
+                <button class="pattern-button" type="button" data-pattern="maple-black" aria-pressed="false">
+                  <span class="pattern-swatch" aria-hidden="true"></span>
+                  <span class="pattern-button-copy"><span>Maple + black</span><span class="button-state" aria-hidden="true">Selected</span></span>
                 </button>
-              </div>
-
-              <div class="pattern-builder" id="pattern-builder">
-                <fieldset>
-                  <legend>1. Choose the field</legend>
-                  <div class="choice-grid choice-grid--two">
-                    <label class="choice"><input type="radio" name="pattern-base-style" value="solid"><span>Solid</span></label>
-                    <label class="choice"><input type="radio" name="pattern-base-style" value="checker" checked><span>Checkerboard</span></label>
-                  </div>
-                </fieldset>
-
-                <fieldset>
-                  <legend>2. Choose the border</legend>
-                  <div class="choice-grid">
-                    <label class="choice"><input type="radio" name="pattern-border-style" value="none" checked><span>No border</span></label>
-                    <label class="choice"><input type="radio" name="pattern-border-style" value="solid"><span>Solid border</span></label>
-                    <label class="choice"><input type="radio" name="pattern-border-style" value="checker"><span>Checker border</span></label>
-                  </div>
-                </fieldset>
-
-                <fieldset>
-                  <legend>3. Choose the finishes</legend>
-                  <div class="material-grid">
-                    <label class="material-control" id="base-solid-control" for="pattern-base-solid-finish" hidden>
-                      <span>Field finish</span>
-                      <select id="pattern-base-solid-finish">
-                        <option value="black">Black</option>
-                        <option value="white">White</option>
-                        <option value="wood">Wood</option>
-                      </select>
-                    </label>
-                    <label class="material-control" id="base-checker-control" for="pattern-base-checker-pair">
-                      <span>Field finishes</span>
-                      <select id="pattern-base-checker-pair">
-                        <option value="black-white">Black + white</option>
-                        <option value="black-wood">Black + wood</option>
-                        <option value="white-wood">White + wood</option>
-                      </select>
-                    </label>
-                    <label class="material-control" id="border-solid-control" for="pattern-border-solid-finish" hidden>
-                      <span>Border finish</span>
-                      <select id="pattern-border-solid-finish" disabled>
-                        <option value="black">Black</option>
-                        <option value="white">White</option>
-                        <option value="wood">Wood</option>
-                      </select>
-                    </label>
-                    <label class="material-control" id="border-checker-control" for="pattern-border-checker-pair" hidden>
-                      <span>Border finishes</span>
-                      <select id="pattern-border-checker-pair" disabled>
-                        <option value="black-white">Black + white</option>
-                        <option value="black-wood">Black + wood</option>
-                        <option value="white-wood">White + wood</option>
-                      </select>
-                    </label>
-                  </div>
-                </fieldset>
-                <p class="builder-help">This builder covers 36 distinct solid and checkerboard drawings. It does not check panel inventory or reserve a floor.</p>
               </div>
             </div>
-            <p class="pattern-note"><strong>Illustration only.</strong> This pattern preview is not an inventory or availability check. Final layout, size, and availability are confirmed with the quote.</p>
+            <p class="pattern-note"><strong>Illustration only.</strong> Maple combinations are drawings until completed maple floors are photographed. The preview is not an inventory or availability check; final pattern, size, and availability are confirmed with the quote.</p>
             <noscript><p class="pattern-note">The default checkerboard drawing remains visible, but the combination controls require JavaScript.</p></noscript>
           </div>
         </div>
@@ -1069,11 +1084,12 @@
                 <label for="quote-layout">Preferred floor layout</label>
                 <select id="quote-layout" name="layout">
                   <option value="">Not sure yet</option>
-                  <option>All black</option>
+                  <option>Black + white</option>
                   <option>All white</option>
-                  <option>Black-and-white checkerboard</option>
-                  <option>Wood or mixed combination</option>
-                  <option>Something else</option>
+                  <option>All black</option>
+                  <option>All maple</option>
+                  <option>Maple + white</option>
+                  <option>Maple + black</option>
                 </select>
               </div>
               <div class="check-field">
@@ -1112,7 +1128,7 @@
         </div>
         <p>Dance floor rental for weddings and events across the Kansas City metro and beyond.</p>
       </div>
-      <p class="caption footer-note">Website preview · Quote form does not send</p>
+      <p class="caption footer-note">Client preview · Quote form does not send</p>
     </div>
   </footer>
 
@@ -1126,98 +1142,33 @@
       const caption = document.querySelector("#pattern-caption");
       const status = document.querySelector("#pattern-status");
       const interactive = document.querySelector("#pattern-interactive");
-      const baseStyleInputs = Array.from(document.querySelectorAll('[name="pattern-base-style"]'));
-      const borderStyleInputs = Array.from(document.querySelectorAll('[name="pattern-border-style"]'));
-      const controls = {
-        baseSolidFinish: document.querySelector("#pattern-base-solid-finish"),
-        baseCheckerPair: document.querySelector("#pattern-base-checker-pair"),
-        borderSolidFinish: document.querySelector("#pattern-border-solid-finish"),
-        borderCheckerPair: document.querySelector("#pattern-border-checker-pair")
-      };
-      const controlRows = {
-        baseSolidFinish: document.querySelector("#base-solid-control"),
-        baseCheckerPair: document.querySelector("#base-checker-control"),
-        borderSolidFinish: document.querySelector("#border-solid-control"),
-        borderCheckerPair: document.querySelector("#border-checker-control")
-      };
-
-      const state = {
-        baseStyle: "checker",
-        borderStyle: "none",
-        baseSolidFinish: "black",
-        baseCheckerPair: "black-white",
-        borderSolidFinish: "wood",
-        borderCheckerPair: "black-wood"
-      };
-      const finishNames = { black: "black", white: "white", wood: "wood" };
-      const pairFinishes = {
-        "black-white": ["black", "white"],
-        "black-wood": ["black", "wood"],
-        "white-wood": ["white", "wood"]
-      };
-      const pairNames = {
-        "black-white": "black-and-white",
-        "black-wood": "black-and-wood",
-        "white-wood": "white-and-wood"
-      };
-      const presets = {
-        checker: {
-          baseStyle: "checker",
-          borderStyle: "none",
-          baseCheckerPair: "black-white"
-        },
-        "solid-black": {
-          baseStyle: "solid",
-          borderStyle: "none",
-          baseSolidFinish: "black"
+      const patterns = {
+        "black-white": {
+          title: "Black + white checkerboard",
+          finishes: ["black", "white"]
         },
         "solid-white": {
-          baseStyle: "solid",
-          borderStyle: "none",
-          baseSolidFinish: "white"
+          title: "All white",
+          finishes: ["white"]
         },
-        "wood-border": {
-          baseStyle: "checker",
-          borderStyle: "solid",
-          baseCheckerPair: "black-white",
-          borderSolidFinish: "wood"
+        "solid-black": {
+          title: "All black",
+          finishes: ["black"]
         },
-        "black-border": {
-          baseStyle: "checker",
-          borderStyle: "solid",
-          baseCheckerPair: "black-white",
-          borderSolidFinish: "black"
+        "solid-maple": {
+          title: "All maple",
+          finishes: ["wood"]
         },
-        "wood-black": {
-          baseStyle: "checker",
-          borderStyle: "none",
-          baseCheckerPair: "black-wood"
+        "maple-white": {
+          title: "Maple + white checkerboard",
+          finishes: ["wood", "white"]
+        },
+        "maple-black": {
+          title: "Maple + black checkerboard",
+          finishes: ["wood", "black"]
         }
       };
-
-      const checkerFinish = (pair, row, column) =>
-        pairFinishes[pair][(row + column) % 2];
-
-      const finishFor = (row, column) => {
-        const edge = row === 0 || row === 5 || column === 0 || column === 5;
-        if (edge && state.borderStyle === "solid") return state.borderSolidFinish;
-        if (edge && state.borderStyle === "checker") {
-          return checkerFinish(state.borderCheckerPair, row, column);
-        }
-        if (state.baseStyle === "solid") return state.baseSolidFinish;
-        return checkerFinish(state.baseCheckerPair, row, column);
-      };
-
-      const titleFor = () => {
-        const field = state.baseStyle === "solid"
-          ? `Solid ${finishNames[state.baseSolidFinish]} field`
-          : `${pairNames[state.baseCheckerPair]} checkerboard`;
-        if (state.borderStyle === "none") return field;
-        const border = state.borderStyle === "solid"
-          ? `${finishNames[state.borderSolidFinish]} border`
-          : `${pairNames[state.borderCheckerPair]} checker border`;
-        return `${border} with ${field.toLowerCase()}`;
-      };
+      const finishNames = { black: "black", white: "white", wood: "maple" };
 
       const countText = () => {
         const counts = { black: 0, white: 0, wood: 0 };
@@ -1225,88 +1176,41 @@
         return Object.entries(counts)
           .filter(([, count]) => count > 0)
           .map(([finish, count]) => `${count} ${finishNames[finish]}`)
-          .join(", ");
+          .join(" and ");
       };
 
-      const setControlVisibility = (key, visible) => {
-        controlRows[key].hidden = !visible;
-        controls[key].disabled = !visible;
-      };
-
-      const normalizeBorderChoices = () => {
-        const blockedSolid = state.baseStyle === "solid" ? state.baseSolidFinish : null;
-        Array.from(controls.borderSolidFinish.options).forEach((option) => {
-          option.disabled = option.value === blockedSolid;
-        });
-        if (state.borderStyle === "solid" && state.borderSolidFinish === blockedSolid) {
-          state.borderSolidFinish = Array.from(controls.borderSolidFinish.options)
-            .find((option) => !option.disabled).value;
-        }
-
-        const blockedChecker = state.baseStyle === "checker" ? state.baseCheckerPair : null;
-        Array.from(controls.borderCheckerPair.options).forEach((option) => {
-          option.disabled = option.value === blockedChecker;
-        });
-        if (state.borderStyle === "checker" && state.borderCheckerPair === blockedChecker) {
-          state.borderCheckerPair = Array.from(controls.borderCheckerPair.options)
-            .find((option) => !option.disabled).value;
-        }
-      };
-
-      const syncControls = () => {
-        baseStyleInputs.forEach((input) => { input.checked = input.value === state.baseStyle; });
-        borderStyleInputs.forEach((input) => { input.checked = input.value === state.borderStyle; });
-        Object.entries(controls).forEach(([key, control]) => { control.value = state[key]; });
-        setControlVisibility("baseSolidFinish", state.baseStyle === "solid");
-        setControlVisibility("baseCheckerPair", state.baseStyle === "checker");
-        setControlVisibility("borderSolidFinish", state.borderStyle === "solid");
-        setControlVisibility("borderCheckerPair", state.borderStyle === "checker");
-      };
-
-      const render = (announce = true) => {
-        normalizeBorderChoices();
+      const render = (patternKey, announce = true) => {
+        const pattern = patterns[patternKey];
         tiles.forEach((tile, index) => {
           const row = Math.floor(index / 6);
           const column = index % 6;
-          tile.dataset.finish = finishFor(row, column);
+          const finishIndex = pattern.finishes.length === 1
+            ? 0
+            : (row + column) % pattern.finishes.length;
+          tile.dataset.finish = pattern.finishes[finishIndex];
         });
-        syncControls();
-        const rawTitle = titleFor();
-        const title = rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1);
+        buttons.forEach((button) => {
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.pattern === patternKey)
+          );
+        });
         const counts = countText();
-        name.textContent = title;
-        description.textContent = `${title}. In this 6 × 6 planning grid: ${counts} panels.`;
-        caption.textContent = `Drawing · ${title} · Configuration preview · 6 × 6 grid · 36 panels`;
-        grid.setAttribute("aria-label", `Six-by-six illustration of ${title.toLowerCase()}. ${counts} panels.`);
-        if (announce) status.textContent = `${title}. ${counts} panels in this drawing.`;
+        name.textContent = pattern.title;
+        description.textContent = `${pattern.title}. In this 6 × 6 planning grid: ${counts} panels.`;
+        caption.textContent = `Drawing · ${pattern.title} · 6 × 6 planning grid · 36 panels · Fixed black retaining edge`;
+        grid.setAttribute(
+          "aria-label",
+          `Six-by-six floor drawing of ${pattern.title.toLowerCase()}, with ${counts} panels and a fixed black retaining edge.`
+        );
+        if (announce) status.textContent = `${pattern.title}. ${counts} panels in this drawing.`;
       };
 
       buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          Object.assign(state, presets[button.dataset.pattern]);
-          render();
-        });
-      });
-      baseStyleInputs.forEach((input) => {
-        input.addEventListener("change", () => {
-          state.baseStyle = input.value;
-          render();
-        });
-      });
-      borderStyleInputs.forEach((input) => {
-        input.addEventListener("change", () => {
-          state.borderStyle = input.value;
-          render();
-        });
-      });
-      Object.entries(controls).forEach(([key, control]) => {
-        control.addEventListener("change", () => {
-          state[key] = control.value;
-          render();
-        });
+        button.addEventListener("click", () => render(button.dataset.pattern));
       });
 
-      render(false);
+      render("black-white", false);
       interactive.hidden = false;
     })();
   </script>
