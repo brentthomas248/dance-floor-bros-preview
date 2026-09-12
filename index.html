@@ -265,6 +265,72 @@
       object-fit: cover;
     }
     .venue-images figcaption { margin-top: 10px; }
+    .gallery-thumb {
+      display: block;
+      cursor: zoom-in;
+    }
+    @media (hover: hover) {
+      .gallery-thumb:hover img { opacity: 0.9; }
+    }
+
+    .photo-dialog {
+      width: min(94vw, 1100px);
+      max-height: min(92vh, 900px);
+      margin: auto;
+      padding: 0;
+      border: 1px solid var(--rule);
+      border-radius: 0;
+      background: var(--paper);
+      color: var(--basalt);
+    }
+    .photo-dialog::backdrop { background: rgba(28, 26, 23, 0.82); }
+    .photo-dialog[open] { display: flex; flex-direction: column; }
+    .photo-dialog-header {
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      padding: 12px 12px 0;
+    }
+    .photo-dialog-close {
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--rule);
+      border-radius: 0;
+      background: transparent;
+      color: var(--basalt);
+      cursor: pointer;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    @media (hover: hover) {
+      .photo-dialog-close:hover { border-color: var(--basalt); }
+    }
+    .photo-dialog-figure {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 4px 24px 20px;
+    }
+    .photo-dialog-figure img {
+      flex: 1;
+      min-height: 0;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+    .photo-dialog-figure figcaption { flex: 0 0 auto; padding-top: 12px; }
+    .photo-dialog-figure .caption { color: var(--slate); }
+
+    @media (max-width: 680px) {
+      .photo-dialog-figure { padding: 4px 16px 16px; }
+      .photo-dialog-header { padding: 10px 10px 0; }
+    }
 
     .pattern-section {
       position: relative;
@@ -789,13 +855,19 @@
             <h3>StoneBriar Farm</h3>
             <div class="venue-images">
               <figure>
-                <img src="img/sb-wide-daylight.jpg" width="1600" height="1200" loading="lazy" decoding="async"
-                     alt="A black-and-white checkerboard dance floor centered in the bright timber reception room at StoneBriar Farm.">
+                <a class="gallery-thumb" href="img/sb-wide-daylight.jpg" data-venue="StoneBriar Farm">
+                  <img src="img/sb-wide-daylight.jpg" width="1600" height="1200" loading="lazy" decoding="async"
+                       alt="A black-and-white checkerboard dance floor centered in the bright timber reception room at StoneBriar Farm.">
+                  <span class="visually-hidden"> — View full photo</span>
+                </a>
                 <figcaption><span class="caption">Black-and-white floor · Daylight view</span></figcaption>
               </figure>
               <figure>
-                <img src="img/sb-floor-front.jpg" width="1600" height="1200" loading="lazy" decoding="async"
-                     alt="A front view of the black-and-white checkerboard dance floor inside StoneBriar Farm.">
+                <a class="gallery-thumb" href="img/sb-floor-front.jpg" data-venue="StoneBriar Farm">
+                  <img src="img/sb-floor-front.jpg" width="1600" height="1200" loading="lazy" decoding="async"
+                       alt="A front view of the black-and-white checkerboard dance floor inside StoneBriar Farm.">
+                  <span class="visually-hidden"> — View full photo</span>
+                </a>
                 <figcaption><span class="caption">Black-and-white floor · Front view</span></figcaption>
               </figure>
             </div>
@@ -805,13 +877,19 @@
             <h3>The Ridge</h3>
             <div class="venue-images">
               <figure>
-                <img src="img/ridge-floor-hero.jpg" width="1200" height="1600" loading="lazy" decoding="async"
-                     alt="A black-and-white checkerboard dance floor beneath timber roof trusses and a ring chandelier at The Ridge.">
+                <a class="gallery-thumb" href="img/ridge-floor-hero.jpg" data-venue="The Ridge">
+                  <img src="img/ridge-floor-hero.jpg" width="1200" height="1600" loading="lazy" decoding="async"
+                       alt="A black-and-white checkerboard dance floor beneath timber roof trusses and a ring chandelier at The Ridge.">
+                  <span class="visually-hidden"> — View full photo</span>
+                </a>
                 <figcaption><span class="caption">Black-and-white floor · Room view</span></figcaption>
               </figure>
               <figure>
-                <img src="img/ridge-floor-angle.jpg" width="1200" height="1600" loading="lazy" decoding="async"
-                     alt="An angled view across the black-and-white checkerboard dance floor toward the stone fireplace at The Ridge.">
+                <a class="gallery-thumb" href="img/ridge-floor-angle.jpg" data-venue="The Ridge">
+                  <img src="img/ridge-floor-angle.jpg" width="1200" height="1600" loading="lazy" decoding="async"
+                       alt="An angled view across the black-and-white checkerboard dance floor toward the stone fireplace at The Ridge.">
+                  <span class="visually-hidden"> — View full photo</span>
+                </a>
                 <figcaption><span class="caption">Black-and-white floor · Fireplace view</span></figcaption>
               </figure>
             </div>
@@ -821,8 +899,11 @@
             <h3>The Venue at Stockton Lake</h3>
             <div class="venue-images venue-images--single">
               <figure>
-                <img src="img/stockton-floor.jpg" width="1200" height="1600" loading="lazy" decoding="async"
-                     alt="A black-and-white checkerboard dance floor running through the timber reception hall at The Venue at Stockton Lake.">
+                <a class="gallery-thumb" href="img/stockton-floor.jpg" data-venue="The Venue at Stockton Lake">
+                  <img src="img/stockton-floor.jpg" width="1200" height="1600" loading="lazy" decoding="async"
+                       alt="A black-and-white checkerboard dance floor running through the timber reception hall at The Venue at Stockton Lake.">
+                  <span class="visually-hidden"> — View full photo</span>
+                </a>
                 <figcaption><span class="caption">Black-and-white floor · Reception hall view</span></figcaption>
               </figure>
             </div>
@@ -832,8 +913,11 @@
             <h3>Whiskey Ridge</h3>
             <div class="venue-images venue-images--single">
               <figure>
-                <img src="img/wr-dancing-floor.jpg" width="1066" height="1600" loading="lazy" decoding="async"
-                     alt="Guests dancing on a black-and-white checkerboard dance floor under colored reception lighting at Whiskey Ridge.">
+                <a class="gallery-thumb" href="img/wr-dancing-floor.jpg" data-venue="Whiskey Ridge">
+                  <img src="img/wr-dancing-floor.jpg" width="1066" height="1600" loading="lazy" decoding="async"
+                       alt="Guests dancing on a black-and-white checkerboard dance floor under colored reception lighting at Whiskey Ridge.">
+                  <span class="visually-hidden"> — View full photo</span>
+                </a>
                 <figcaption><span class="caption">Black-and-white floor · Dancing</span></figcaption>
               </figure>
             </div>
@@ -1111,6 +1195,19 @@
         </form>
       </div>
     </section>
+
+    <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="photo-dialog-title" aria-describedby="photo-dialog-desc">
+      <div class="photo-dialog-header">
+        <button type="button" class="photo-dialog-close" id="photo-dialog-close">Close</button>
+      </div>
+      <h2 id="photo-dialog-title" class="visually-hidden">StoneBriar Farm — Black-and-white floor · Daylight view</h2>
+      <figure class="photo-dialog-figure">
+        <img id="photo-dialog-image" src="img/sb-wide-daylight.jpg"
+             alt="A black-and-white checkerboard dance floor centered in the bright timber reception room at StoneBriar Farm.">
+        <figcaption><span class="caption" id="photo-dialog-caption">StoneBriar Farm — Black-and-white floor · Daylight view</span></figcaption>
+      </figure>
+      <p class="visually-hidden" id="photo-dialog-desc">A black-and-white checkerboard dance floor centered in the bright timber reception room at StoneBriar Farm.</p>
+    </dialog>
   </main>
 
   <footer class="site-footer">
@@ -1212,6 +1309,86 @@
 
       render("black-white", false);
       interactive.hidden = false;
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const dialog = document.querySelector("#photo-dialog");
+      if (!dialog || typeof dialog.showModal !== "function") return;
+
+      const dialogImage = document.querySelector("#photo-dialog-image");
+      const dialogTitle = document.querySelector("#photo-dialog-title");
+      const dialogCaption = document.querySelector("#photo-dialog-caption");
+      const dialogDesc = document.querySelector("#photo-dialog-desc");
+      const closeButton = document.querySelector("#photo-dialog-close");
+      const triggers = Array.from(document.querySelectorAll(".gallery-thumb"));
+      let lastTrigger = null;
+
+      const openFromTrigger = (trigger) => {
+        const img = trigger.querySelector("img");
+        const figure = trigger.closest("figure");
+        const captionEl = figure ? figure.querySelector("figcaption .caption") : null;
+        const alt = img ? img.getAttribute("alt") || "" : "";
+        const venue = trigger.dataset.venue || "";
+        const captionText = captionEl ? captionEl.textContent.trim() : "";
+        const label = venue && captionText ? `${venue} — ${captionText}` : (venue || captionText);
+
+        lastTrigger = trigger;
+        dialogImage.src = img ? img.src : trigger.href;
+        dialogImage.alt = alt;
+        dialogTitle.textContent = label;
+        dialogCaption.textContent = label;
+        dialogDesc.textContent = alt;
+        dialog.showModal();
+      };
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          openFromTrigger(trigger);
+        });
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key === " " || event.key === "Spacebar") {
+            event.preventDefault();
+            openFromTrigger(trigger);
+          }
+        });
+      });
+
+      closeButton.addEventListener("click", () => dialog.close());
+
+      const getFocusable = () => Array.from(
+        dialog.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => !el.disabled);
+
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") return;
+        const focusable = getFocusable();
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      dialog.addEventListener("click", (event) => {
+        const rect = dialog.getBoundingClientRect();
+        const inDialog = event.clientX >= rect.left && event.clientX <= rect.right
+          && event.clientY >= rect.top && event.clientY <= rect.bottom;
+        if (!inDialog) dialog.close();
+      });
+
+      dialog.addEventListener("close", () => {
+        if (lastTrigger) lastTrigger.focus();
+      });
     })();
   </script>
 </body>
