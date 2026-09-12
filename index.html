@@ -288,9 +288,18 @@
     .photo-dialog-header {
       flex: 0 0 auto;
       display: flex;
-      justify-content: flex-end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
       padding: 12px 12px 0;
     }
+    .photo-dialog-header-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .photo-dialog-nav,
     .photo-dialog-close {
       min-height: 44px;
       padding: 0 18px;
@@ -304,6 +313,7 @@
       text-transform: uppercase;
     }
     @media (hover: hover) {
+      .photo-dialog-nav:hover,
       .photo-dialog-close:hover { border-color: var(--basalt); }
     }
     .photo-dialog-figure {
@@ -1198,7 +1208,11 @@
 
     <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="photo-dialog-title" aria-describedby="photo-dialog-desc">
       <div class="photo-dialog-header">
-        <button type="button" class="photo-dialog-close" id="photo-dialog-close">Close</button>
+        <button type="button" class="photo-dialog-nav photo-dialog-prev" id="photo-dialog-prev" aria-label="Previous photo">Previous</button>
+        <div class="photo-dialog-header-right">
+          <button type="button" class="photo-dialog-nav photo-dialog-next" id="photo-dialog-next" aria-label="Next photo">Next</button>
+          <button type="button" class="photo-dialog-close" id="photo-dialog-close" autofocus>Close</button>
+        </div>
       </div>
       <h2 id="photo-dialog-title" class="visually-hidden">StoneBriar Farm — Black-and-white floor · Daylight view</h2>
       <figure class="photo-dialog-figure">
@@ -1322,10 +1336,13 @@
       const dialogCaption = document.querySelector("#photo-dialog-caption");
       const dialogDesc = document.querySelector("#photo-dialog-desc");
       const closeButton = document.querySelector("#photo-dialog-close");
+      const prevButton = document.querySelector("#photo-dialog-prev");
+      const nextButton = document.querySelector("#photo-dialog-next");
       const triggers = Array.from(document.querySelectorAll(".gallery-thumb"));
-      let lastTrigger = null;
+      let openerTrigger = null;
+      let currentIndex = -1;
 
-      const openFromTrigger = (trigger) => {
+      const readPhoto = (trigger) => {
         const img = trigger.querySelector("img");
         const figure = trigger.closest("figure");
         const captionEl = figure ? figure.querySelector("figcaption .caption") : null;
@@ -1333,13 +1350,25 @@
         const venue = trigger.dataset.venue || "";
         const captionText = captionEl ? captionEl.textContent.trim() : "";
         const label = venue && captionText ? `${venue} — ${captionText}` : (venue || captionText);
+        return { src: img ? img.src : trigger.href, alt, label };
+      };
 
-        lastTrigger = trigger;
-        dialogImage.src = img ? img.src : trigger.href;
-        dialogImage.alt = alt;
-        dialogTitle.textContent = label;
-        dialogCaption.textContent = label;
-        dialogDesc.textContent = alt;
+      const renderPhoto = (index) => {
+        currentIndex = index;
+        const photo = readPhoto(triggers[currentIndex]);
+        dialogImage.src = photo.src;
+        dialogImage.alt = photo.alt;
+        dialogTitle.textContent = photo.label;
+        dialogCaption.textContent = photo.label;
+        dialogDesc.textContent = photo.alt;
+      };
+
+      const showPrevious = () => renderPhoto((currentIndex - 1 + triggers.length) % triggers.length);
+      const showNext = () => renderPhoto((currentIndex + 1) % triggers.length);
+
+      const openFromTrigger = (trigger) => {
+        openerTrigger = trigger;
+        renderPhoto(triggers.indexOf(trigger));
         dialog.showModal();
       };
 
@@ -1357,6 +1386,8 @@
       });
 
       closeButton.addEventListener("click", () => dialog.close());
+      prevButton.addEventListener("click", showPrevious);
+      nextButton.addEventListener("click", showNext);
 
       const getFocusable = () => Array.from(
         dialog.querySelectorAll(
@@ -1365,6 +1396,16 @@
       ).filter((el) => !el.disabled);
 
       dialog.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          showPrevious();
+          return;
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          showNext();
+          return;
+        }
         if (event.key !== "Tab") return;
         const focusable = getFocusable();
         if (focusable.length === 0) return;
@@ -1380,14 +1421,12 @@
       });
 
       dialog.addEventListener("click", (event) => {
-        const rect = dialog.getBoundingClientRect();
-        const inDialog = event.clientX >= rect.left && event.clientX <= rect.right
-          && event.clientY >= rect.top && event.clientY <= rect.bottom;
-        if (!inDialog) dialog.close();
+        if (event.target !== dialog) return;
+        dialog.close();
       });
 
       dialog.addEventListener("close", () => {
-        if (lastTrigger) lastTrigger.focus();
+        if (openerTrigger) openerTrigger.focus();
       });
     })();
   </script>
