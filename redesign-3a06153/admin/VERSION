@@ -1,0 +1,10 @@
+@sveltia/cms 0.262.0
+https://registry.npmjs.org/@sveltia/cms/-/cms-0.262.0.tgz
+sha256 842e370358c2a588d0f0cb664d47b384c42140139cd97a42e46ba79573075a55 chunks/assets/_shared-module_28-B61bYOsB.js
+sha256 d0e9044430006c5bb48f477501a5af465f0a6377d2fcd7495aa215b8b75aaee3 chunks/assets/rolldown-runtime-BWaJ3C7D.js
+sha256 735e8ce8096aa1ecd5be8cdd7937c81922c511bf5dde94be18361fd36fbcaadd chunks/git.js
+sha256 a8f689e1cc7dbf019e9c6d2a9ec2f7962e755cdbf25a4e418e422d7bf2a87ad7 chunks/gitea.js
+sha256 10149450e62ef814204b7e7832f3ebccfa59e703cca4779698495b1ccf035b9d chunks/gitlab.js
+sha256 709a4779022db236f08e6a5316d52ad6cf8453018d46a004906c242826c17ee6 chunks/qrcode.js
+sha256 55105ab1030a24f007904cbab670655ce1d948e8d5f1a237ebed1908871b44e9 chunks/react-dom.js
+sha256 2a2940e110c82feb7f955af9498153d8f7dba7d05e88db5cab0888bab5c9eaca sveltia-cms.js

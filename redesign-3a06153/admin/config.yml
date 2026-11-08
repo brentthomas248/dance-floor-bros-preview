@@ -1,0 +1,110 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# Sveltia CMS for dancefloorbros.com. Limits here are the same numbers as TEXT_LIMITS and
+# PHOTO_TEXT_LIMITS in scripts/build_site.py; tests/test_admin.py keeps them equal. The
+# build is the gate; these only give editors counters and messages before they save.
+backend:
+  name: github
+  repo: brentthomas248/dance-floor-bros
+  branch: main
+  # "Sign In with Token" only, until Brent decides on the sveltia-cms-auth Worker; then
+  # add base_url: <worker URL> and change this to [oauth, token] or [oauth].
+  auth_methods: [token]
+  squash_merges: true
+
+# Every save is a branch (cms/site/home) and a pull request; Publish merges it to main.
+publish_mode: editorial_workflow
+
+media_folder: /content/photos
+public_folder: /photos
+media_libraries:
+  # Real photography only: no stock-photo providers in the asset picker.
+  stock_assets:
+    providers: []
+  all:
+    # Uploaded files are renamed to a date and a short id, so no venue or camera name
+    # can reach a public URL.
+    filename_template: '{{year}}{{month}}{{day}}-{{uuid_short}}'
+  default:
+    config:
+      max_file_size: 12000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 1600
+          height: 2134
+
+collections:
+  - name: site
+    label: Website
+    # Publishing is switched off until main is protected (pull request, green CI and a
+    # review required; no direct pushes). Until then Save still opens a pull request
+    # for review, and Brent merges on GitHub. Remove this line only after the branch
+    # protection exists; see docs/EDITING.md section 9.
+    publish: false
+    files:
+      - name: home
+        label: Home page
+        file: content/home.json
+        format: json
+        editor: { preview: false }
+        fields:
+          - name: hero
+            label: Top of the page
+            widget: object
+            fields:
+              - { name: title, label: Headline, widget: string, minlength: 10, maxlength: 60, hint: "One sentence. The largest text on the page." }
+              - { name: location, label: Location line, widget: string, minlength: 5, maxlength: 40 }
+          - name: photos
+            label: Photographs
+            widget: object
+            hint: "Portrait photos as shot on a phone (3 to 4). Describe what is in the picture; never name the venue."
+            fields:
+              - name: hero
+                label: Top photograph
+                widget: object
+                fields:
+                  - { name: src, label: Photo, widget: image, accept: "image/jpeg,image/webp" }
+                  - { name: alt, label: Description for screen readers, widget: string, minlength: 15, maxlength: 170, pattern: ['^(?!.*[Ss]tone ?[Bb]riar)(?!.*[Tt]he [Rr]idge)(?!.*[Ss]tockton)(?!.*[Ww]hiskey [Rr]idge).*$', 'Please leave venue names out.'] }
+                  - { name: caption, label: Caption, widget: string, minlength: 2, maxlength: 40 }
+              - name: one
+                label: Photograph 1
+                widget: object
+                fields:
+                  - { name: src, label: Photo, widget: image, accept: "image/jpeg,image/webp" }
+                  - { name: alt, label: Description for screen readers, widget: string, minlength: 15, maxlength: 170, pattern: ['^(?!.*[Ss]tone ?[Bb]riar)(?!.*[Tt]he [Rr]idge)(?!.*[Ss]tockton)(?!.*[Ww]hiskey [Rr]idge).*$', 'Please leave venue names out.'] }
+                  - { name: caption, label: Caption, widget: string, minlength: 2, maxlength: 40 }
+              - name: two
+                label: Photograph 2
+                widget: object
+                fields:
+                  - { name: src, label: Photo, widget: image, accept: "image/jpeg,image/webp" }
+                  - { name: alt, label: Description for screen readers, widget: string, minlength: 15, maxlength: 170, pattern: ['^(?!.*[Ss]tone ?[Bb]riar)(?!.*[Tt]he [Rr]idge)(?!.*[Ss]tockton)(?!.*[Ww]hiskey [Rr]idge).*$', 'Please leave venue names out.'] }
+                  - { name: caption, label: Caption, widget: string, minlength: 2, maxlength: 40 }
+              - name: three
+                label: Photograph 3
+                widget: object
+                fields:
+                  - { name: src, label: Photo, widget: image, accept: "image/jpeg,image/webp" }
+                  - { name: alt, label: Description for screen readers, widget: string, minlength: 15, maxlength: 170, pattern: ['^(?!.*[Ss]tone ?[Bb]riar)(?!.*[Tt]he [Rr]idge)(?!.*[Ss]tockton)(?!.*[Ww]hiskey [Rr]idge).*$', 'Please leave venue names out.'] }
+                  - { name: caption, label: Caption, widget: string, minlength: 2, maxlength: 40 }
+              - name: four
+                label: Photograph 4
+                widget: object
+                fields:
+                  - { name: src, label: Photo, widget: image, accept: "image/jpeg,image/webp" }
+                  - { name: alt, label: Description for screen readers, widget: string, minlength: 15, maxlength: 170, pattern: ['^(?!.*[Ss]tone ?[Bb]riar)(?!.*[Tt]he [Rr]idge)(?!.*[Ss]tockton)(?!.*[Ww]hiskey [Rr]idge).*$', 'Please leave venue names out.'] }
+                  - { name: caption, label: Caption, widget: string, minlength: 2, maxlength: 40 }
+          - { name: facts, label: Facts band, widget: text, minlength: 20, maxlength: 200, hint: "Only facts about the floors and the service." }
+          - { name: graphics, label: Center graphics line, widget: string, minlength: 10, maxlength: 120 }
+          - name: quote
+            label: Request a quote
+            widget: object
+            fields:
+              - { name: intro, label: Opening line, widget: string, minlength: 10, maxlength: 120 }
+          - name: footer
+            label: Footer
+            widget: object
+            fields:
+              - { name: line, label: Footer line, widget: string, minlength: 10, maxlength: 120 }
